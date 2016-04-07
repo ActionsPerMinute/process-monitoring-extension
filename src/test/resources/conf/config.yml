@@ -15,6 +15,7 @@ excludeProcesses: []
 # Processes with an aggregated absolute memory consumption of LESS than this number
 # in Megabytes will be filtered out of the reported metrics. Default value is 100 [MB]
 memoryThreshold: 100
+cpuThreshold: 10
 
 # ONLY for OS - WINDOWS
 # csv.xsl file path - leave null for default location, 

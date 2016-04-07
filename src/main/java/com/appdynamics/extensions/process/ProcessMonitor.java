@@ -17,6 +17,7 @@ package com.appdynamics.extensions.process;
 
 import com.appdynamics.extensions.PathResolver;
 import com.appdynamics.extensions.process.config.Configuration;
+import com.appdynamics.extensions.process.parser.OSXParser;
 import com.appdynamics.extensions.process.parser.AIXParser;
 import com.appdynamics.extensions.process.parser.HPUXParser;
 import com.appdynamics.extensions.process.parser.LinuxParser;
@@ -80,6 +81,9 @@ public class ProcessMonitor extends AManagedMonitor {
         } else if (os.contains("linux")) {
             parser = new LinuxParser(config);
             logger.debug("OS System detected: Linux");
+        } else if (os.contains("mac os x")) {
+            parser = new OSXParser(config);
+            logger.debug("OS System detected: Mac OSX");
         } else if (os.contains("sunos")) {
             parser = new SolarisParser(config);
             logger.debug("OS System detected: Solaris");
@@ -101,6 +105,7 @@ public class ProcessMonitor extends AManagedMonitor {
         String includeProcs = "";
         logger.debug("Display by PID " + config.isDisplayByPid());
         logger.debug("Memory Threshold:        " + config.getMemoryThreshold() + " MB");
+        logger.debug("Cpu Threshold:        " + config.getCpuThreshold() + " %Cpu");
         for (String pr : config.getExcludeProcesses()) {
             exclProcs = exclProcs.concat(pr + ", ");
         }
@@ -122,9 +127,9 @@ public class ProcessMonitor extends AManagedMonitor {
         logger.debug("Reading in the set of monitored processes");
         parser.readProcsFromFile();
         int memoryThreshold = config.getMemoryThreshold();
+        int cpuThreshold = config.getCpuThreshold();
         for (ProcessData procData : parser.getProcesses().values()) {
-
-            if (procData.absoluteMem.doubleValue() >= memoryThreshold || parser.getIncludeProcesses().contains(procData.name)) {
+            if ((procData.absoluteMem.doubleValue() >= memoryThreshold && procData.CPUPercent.doubleValue() >= cpuThreshold) || parser.getIncludeProcesses().contains(procData.name)) {
 
                 parser.addIncludeProcesses(procData.name);
 

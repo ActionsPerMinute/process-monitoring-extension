@@ -26,6 +26,7 @@ public class Configuration {
     private Set<String> excludeProcesses = new HashSet<String>();
     private Set<String> includeProcesses = new HashSet<String>();
     private int memoryThreshold;
+    private int cpuThreshold;
     private String csvFilePath;
     private String monitoredProcessFilePath;
     private String metricPrefix;
@@ -58,8 +59,16 @@ public class Configuration {
         return memoryThreshold;
     }
 
+    public int getCpuThreshold() {
+        return cpuThreshold;
+    }
+
     public void setMemoryThreshold(int memoryThreshold) {
         this.memoryThreshold = memoryThreshold;
+    }
+
+    public void setCpuThreshold(int cpuThreshold) {
+        this.cpuThreshold = cpuThreshold;
     }
 
     public String getMonitoredProcessFilePath() {

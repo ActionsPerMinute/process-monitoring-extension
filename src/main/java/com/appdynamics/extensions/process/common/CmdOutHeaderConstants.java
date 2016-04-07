@@ -13,6 +13,11 @@ public class CmdOutHeaderConstants {
     public static final String SOLARIS_MEM = "SIZE";
     public static final String SOLARIS_PROC_NAME = "COMMAND";
 
+    public static final String OSX_PID = "PID";
+    public static final String OSX_CPU_PERCENT = "%CPU";
+    public static final String OSX_MEM_PERCENT = "%MEM";
+    public static final String OSX_PROC_NAME = "COMMAND";
+
     public static final String AIX_PID = "PID";
     public static final String AIX_CPU_PERCENT = "%CPU";
     public static final String AIX_MEM_PERCENT = "%MEM";

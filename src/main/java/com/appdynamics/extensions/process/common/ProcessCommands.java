@@ -34,6 +34,10 @@ public class ProcessCommands {
     public static final String AIX_MEMORY_COMMAND = "getconf REAL_MEMORY";
     public static final String AIX_PROCESS_LIST_COMMAND = "ps -eo pid,pcpu,pmem,command";
 
+    // OSX
+    public static final String OSX_MEMORY_COMMAND = "sysctl hw.memsize";
+    public static final String OSX_PROCESS_LIST_COMMAND = "ps -eo pid,pcpu,pmem,command";
+
     // HP-UX
     // For Memory machinfo | grep -i memory doesn't work on HP-UX 11.1x, so parsing top command
     public static final String HPUX_TOP_COMMAND = "top -d 1";
